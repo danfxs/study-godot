@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cmt3ctdyy4efm"]
+
+[ext_resource type="Texture2D" uid="uid://djjponsttwqfs" path="res://Assets/GemBg.png" id="1_gwu2e"]
+[ext_resource type="Script" uid="uid://dd37yws3ngm1v" path="res://Scenes/Game/Game.gd" id="1_xbxml"]
+
+[node name="Game" type="Node2D" unique_id=505897926]
+script = ExtResource("1_xbxml")
+
+[node name="GemBg" type="Sprite2D" parent="." unique_id=860334462]
+position = Vector2(626, 337)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("1_gwu2e")
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=843540267]
+wait_time = 2.0
+
+[connection signal="timeout" from="SpawnTimer" to="." method="spawn_dice"]
