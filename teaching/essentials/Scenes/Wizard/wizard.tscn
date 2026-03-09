@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://defehin0147mo"]
+
+[ext_resource type="Script" uid="uid://cbcxxrrld6ft8" path="res://Scenes/Wizard/Wizard.gd" id="1_5ylbr"]
+[ext_resource type="Texture2D" uid="uid://dg4s56rbh13yn" path="res://Assets/Wizard.png" id="1_qptgm"]
+
+[node name="Wizard" type="Node2D" unique_id=1050088079]
+script = ExtResource("1_5ylbr")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=245737166]
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("1_qptgm")
+
+[node name="RevealTimer" type="Timer" parent="." unique_id=1752223386]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="SpellTimer" type="Timer" parent="." unique_id=2146945427]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="RevealTimer" to="." method="_on_reveal_timer_timeout"]
+[connection signal="timeout" from="SpellTimer" to="." method="_on_spell_timer_timeout"]
