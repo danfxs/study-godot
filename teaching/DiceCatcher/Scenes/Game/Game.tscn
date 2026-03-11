@@ -2,8 +2,20 @@
 
 [ext_resource type="Texture2D" uid="uid://djjponsttwqfs" path="res://Assets/GemBg.png" id="1_gwu2e"]
 [ext_resource type="Script" uid="uid://dd37yws3ngm1v" path="res://Scenes/Game/Game.gd" id="1_xbxml"]
+[ext_resource type="PackedScene" uid="uid://bwi54w2adx1vg" path="res://Scenes/Fox/Fox.tscn" id="3_xbxml"]
+[ext_resource type="FontFile" uid="uid://d2nlwt14impgw" path="res://Assets/LuckiestGuy-Regular.ttf" id="4_ln2h6"]
+[ext_resource type="AudioStream" uid="uid://rxwcie4b6wbb" path="res://Assets/tetris.mp3" id="5_y3kpf"]
+[ext_resource type="AudioStream" uid="uid://c0orcx0ncovyq" path="res://Assets/game_over.wav" id="6_3k6gv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_y3kpf"]
+font = ExtResource("4_ln2h6")
+font_size = 40
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 7
 
 [node name="Game" type="Node2D" unique_id=505897926]
+process_mode = 3
 script = ExtResource("1_xbxml")
 
 [node name="GemBg" type="Sprite2D" parent="." unique_id=860334462]
@@ -11,7 +23,32 @@ position = Vector2(626, 337)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("1_gwu2e")
 
-[node name="SpawnTimer" type="Timer" parent="." unique_id=843540267]
+[node name="ScoreLabel" type="Label" parent="." unique_id=90047668]
+offset_left = 24.0
+offset_top = 23.0
+offset_right = 64.0
+offset_bottom = 46.0
+text = "score"
+label_settings = SubResource("LabelSettings_y3kpf")
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=388413532]
+stream = ExtResource("5_y3kpf")
+volume_db = -16.0
+autoplay = true
+
+[node name="GameoverSound" type="AudioStreamPlayer" parent="." unique_id=64248162]
+stream = ExtResource("6_3k6gv")
+volume_db = -23.0
+
+[node name="Node" type="Node" parent="." unique_id=1546129169]
+process_mode = 1
+
+[node name="Fox" parent="Node" unique_id=1460256749 instance=ExtResource("3_xbxml")]
+z_index = 1
+position = Vector2(555, 582)
+
+[node name="SpawnTimer" type="Timer" parent="Node" unique_id=843540267]
 wait_time = 2.0
 
-[connection signal="timeout" from="SpawnTimer" to="." method="spawn_dice"]
+[connection signal="point_scored" from="Node/Fox" to="." method="_on_fox_point_scored"]
+[connection signal="timeout" from="Node/SpawnTimer" to="." method="spawn_dice"]
