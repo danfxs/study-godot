@@ -14,7 +14,7 @@ func _ready() -> void:
 	spawn_pipe()
 
 func _process(delta: float) -> void:
-	print("points_scored:", points_scored)
+	pass
 
 func score_point() -> void:
 	points_scored += 1
