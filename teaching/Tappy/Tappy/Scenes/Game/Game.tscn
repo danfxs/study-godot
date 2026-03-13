@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://bkaxvbusjivr3"]
+
+[ext_resource type="Script" uid="uid://dbqwyiyqccuoc" path="res://Scenes/Game/Game.gd" id="1_ln2h6"]
+[ext_resource type="Texture2D" uid="uid://cans3ib37iggd" path="res://Assets/background/rocks_2.png" id="1_rdw05"]
+[ext_resource type="PackedScene" uid="uid://bu6g247xbjbdx" path="res://Scenes/Tappy/Tappy.tscn" id="2_gwu2e"]
+[ext_resource type="PackedScene" uid="uid://bles33wu866yv" path="res://Scenes/Barrier/Barrier.tscn" id="3_xbxml"]
+
+[node name="Game" type="Node" unique_id=936632624]
+script = ExtResource("1_ln2h6")
+
+[node name="Rocks2" type="Sprite2D" parent="." unique_id=1639586975]
+position = Vector2(413, 405)
+texture = ExtResource("1_rdw05")
+
+[node name="Tappy" parent="." unique_id=1821876502 instance=ExtResource("2_gwu2e")]
+position = Vector2(78, 513)
+
+[node name="Barrier" parent="." unique_id=285478577 instance=ExtResource("3_xbxml")]
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=1818373851]
+wait_time = 2.0
+
+[node name="PipesHolder" type="Node" parent="." unique_id=1347928925]
+
+[node name="UpperSpawn" type="Marker2D" parent="." unique_id=1365718758]
+position = Vector2(530, 280)
+
+[node name="LowerSpawn" type="Marker2D" parent="." unique_id=388443512]
+position = Vector2(530, 550)
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
