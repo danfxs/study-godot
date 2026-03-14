@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dj2iomtf03hn0" path="res://Scenes/Tappy/Tappy.gd" id="1_46n2r"]
 [ext_resource type="Texture2D" uid="uid://bk1weshdrxkh8" path="res://Assets/plane/planes_sheet.png" id="1_e2xxp"]
+[ext_resource type="AudioStream" uid="uid://dr4o5p8h56wd" path="res://Assets/audio/engine.mp3" id="3_8i0lq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_46n2r"]
 atlas = ExtResource("1_e2xxp")
@@ -35,6 +36,43 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_e2xxp"]
 radius = 27.0
 
+[sub_resource type="Animation" id="Animation_46n2r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_8i0lq"]
+resource_name = "thrust"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -0.5235987755982988, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ssy2e"]
+_data = {
+&"RESET": SubResource("Animation_46n2r"),
+&"thrust": SubResource("Animation_8i0lq")
+}
+
 [node name="Tappy" type="CharacterBody2D" unique_id=1821876502]
 collision_layer = 2
 script = ExtResource("1_46n2r")
@@ -44,8 +82,15 @@ scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_5vxlm")
 animation = &"fly"
 autoplay = "fly"
-frame_progress = 0.29019722
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2000985356]
 position = Vector2(6, 0)
 shape = SubResource("CircleShape2D_e2xxp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1489665713]
+libraries/ = SubResource("AnimationLibrary_ssy2e")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1317950746]
+stream = ExtResource("3_8i0lq")
+volume_db = -6.0
+autoplay = true

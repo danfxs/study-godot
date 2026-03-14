@@ -6,8 +6,9 @@ const TAPPY_SPEED: float = 0.
 
 var _gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 var _jumped: bool = false
-
+#signal plane_died
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("power"):
@@ -23,6 +24,7 @@ func _physics_process(delta: float) -> void:
 	if _jumped:
 		velocity.y = JUMP_POWER
 		_jumped = false
+		animation_player.play("thrust")
 	
 	move_and_slide()
 	
@@ -32,4 +34,6 @@ func _physics_process(delta: float) -> void:
 func die() -> void:
 	#animated_sprite_2d.stop()
 	#set_physics_process(false)
+	#plane_died.emit()
+	SignalHub.emit_on_place_died()
 	get_tree().paused = true

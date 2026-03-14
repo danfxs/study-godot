@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cans3ib37iggd" path="res://Assets/background/rocks_2.png" id="1_rdw05"]
 [ext_resource type="PackedScene" uid="uid://bu6g247xbjbdx" path="res://Scenes/Tappy/Tappy.tscn" id="2_gwu2e"]
 [ext_resource type="PackedScene" uid="uid://bles33wu866yv" path="res://Scenes/Barrier/Barrier.tscn" id="3_xbxml"]
+[ext_resource type="PackedScene" uid="uid://c0odnw8wfqrrr" path="res://Scenes/GameUi/GameUi.tscn" id="5_y3kpf"]
 
 [node name="Game" type="Node" unique_id=936632624]
 script = ExtResource("1_ln2h6")
@@ -27,5 +28,9 @@ position = Vector2(530, 280)
 
 [node name="LowerSpawn" type="Marker2D" parent="." unique_id=388443512]
 position = Vector2(530, 550)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=169975602]
+
+[node name="GameUi" parent="CanvasLayer" unique_id=1544317188 instance=ExtResource("5_y3kpf")]
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
