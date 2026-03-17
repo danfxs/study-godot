@@ -1,0 +1,24 @@
+extends Node
+
+const SCORE_PATH = "user://tappyscore.res"
+
+var high_score: int = 0:
+	get():
+		return high_score
+	set(value):
+		if value > high_score:
+			high_score = value
+			save_high_score()
+
+func _ready() -> void:
+	load_high_score()
+
+func save_high_score() -> void:
+	var hsr: HighScoreRsource = HighScoreRsource.new()
+	hsr.highScore = high_score
+	ResourceSaver.save(hsr, SCORE_PATH)
+
+func load_high_score() -> void:
+	if ResourceLoader.exists(SCORE_PATH):
+		var hsr: HighScoreRsource = load(SCORE_PATH)
+		if hsr: high_score = hsr.highScore

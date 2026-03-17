@@ -13,6 +13,7 @@ var _points: int = 0
 func _ready() -> void:
 	SignalHub.on_plane_died.connect(on_plane_died)
 	SignalHub.on_points_scored.connect(score_points)
+	
 
 func score_points() -> void:
 	_points += 1
@@ -26,6 +27,7 @@ func on_plane_died() -> void:
 	game_over_label.show()
 	game_over_sound.play()
 	change_label_timer.start()
+	ScoreManager.high_score = _points
 
 func _on_change_label_timer_timeout() -> void:
 	game_over_label.hide()

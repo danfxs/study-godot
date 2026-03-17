@@ -4,6 +4,7 @@ class_name Pipes
 const BASE_SPEED: float = 120.
 signal score_point
 @onready var laser: Area2D = $Laser
+@onready var score_sound: AudioStreamPlayer = $ScoreSound
 
 func _ready() -> void:
 	SignalHub.on_plane_died.connect(on_plane_died)
@@ -31,4 +32,5 @@ func _on_body_entered(body: Node2D) -> void:
 func _on_laser_body_exited(body: Node2D) -> void:
 	if body is Tappy:
 		disconnect_laser()
+		score_sound.play()
 		SignalHub.on_points_scored.emit()

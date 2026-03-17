@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="HighScoreRsource" format=3 uid="uid://d2ebr6r4djq44"]
+
+[ext_resource type="Script" uid="uid://di7y64gdqpi1t" path="res://Classes/HighScoreResource.gd" id="1_ofs2i"]
+
+[resource]
+script = ExtResource("1_ofs2i")
+metadata/_custom_type_script = "uid://di7y64gdqpi1t"
