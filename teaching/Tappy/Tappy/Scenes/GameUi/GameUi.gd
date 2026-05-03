@@ -13,7 +13,6 @@ var _points: int = 0
 func _ready() -> void:
 	SignalHub.on_plane_died.connect(on_plane_died)
 	SignalHub.on_points_scored.connect(score_points)
-	
 
 func score_points() -> void:
 	_points += 1
@@ -21,6 +20,8 @@ func score_points() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if can_restart and event.is_action_pressed("power"):
+		GameManager.load_main_scene()
+	if can_restart and event is InputEventScreenTouch and event.pressed:
 		GameManager.load_main_scene()
 
 func on_plane_died() -> void:

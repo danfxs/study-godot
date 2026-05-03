@@ -68,7 +68,8 @@ vertical_alignment = 1
 visible = false
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Press space"
+text = "Press space 
+or touch"
 label_settings = SubResource("LabelSettings_anolp")
 horizontal_alignment = 1
 vertical_alignment = 1

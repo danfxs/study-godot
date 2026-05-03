@@ -13,6 +13,8 @@ var _jumped: bool = false
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("power"):
 		_jumped = true
+	if event is InputEventScreenTouch and event.pressed:
+			_jumped = true
 
 func _ready() -> void:
 	pass
